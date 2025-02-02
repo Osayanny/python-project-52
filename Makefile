@@ -17,4 +17,4 @@ shell:
 	source .venv/bin/activate
 
 render-start:
-	uv run gunicorn task_manager.wsgi
+	gunicorn task_manager.wsgi
