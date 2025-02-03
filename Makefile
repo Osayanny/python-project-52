@@ -18,3 +18,6 @@ shell:
 
 render-start:
 	gunicorn task_manager.wsgi
+
+devserver:
+	uv run python3 manage.py runserver
