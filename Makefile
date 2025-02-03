@@ -13,9 +13,6 @@ migrations:
 build:
 	./build.sh
 
-shell:
-	source .venv/bin/activate
-
 render-start:
 	gunicorn task_manager.wsgi
 
