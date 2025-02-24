@@ -1,0 +1,12 @@
+{% extends 'layouts/base.html' %}
+{% load i18n %}
+
+{% block title %}{% translate 'Delete user' %}{% endblock %}
+{% block content %}
+<h1 class="my-4">{% translate 'Delete user' %}</h1>
+<p>Are you sure you want to delete {{ user.first_name }} {{ user.last_name }}?</p>
+<form action="{% url 'users_delete' user.id %}" method="post">
+    {% csrf_token %}
+    <input class="btn btn-danger" type="submit" value="{% translate 'Delete' %}">
+</form>
+{% endblock %}
