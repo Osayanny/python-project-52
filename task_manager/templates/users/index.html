@@ -1,5 +1,7 @@
-{% extends 'base.html' %}
+{% extends 'layouts/base.html' %}
 {% load i18n %}
+
+{% block title %}{% translate 'Users' %}{% endblock %}
 
 {% block content %}
 <h1 class="my-4">{% translate 'Users' %}</h1>
@@ -19,9 +21,9 @@
             <td>{{ user.first_name }} {{user.last_name }}</td>
             <td>{{ user.created_at }}</td>
             <td>
-                <a href="">{% translate 'Edit' %}</a>
+                <a href="{% url 'users_update' user.id %}">{% translate 'Update' %}</a>
                 <br>
-                <a href="">{% translate 'Delete' %}</a>
+                <a href="{% url 'users_delete' user.id %}">{% translate 'Delete' %}</a>
             </td>
         </tr>
         {% endfor %}
