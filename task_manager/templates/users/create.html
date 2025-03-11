@@ -1,9 +1,8 @@
 {% extends 'layouts/form.html' %}
 {% load i18n %}
 
-{% block title %}{% translate 'Sign up' %}{% endblock %}
-{% block path %}{% url 'users_create' %}{% endblock %}
 {% block action %}{% translate 'Registration' %}{% endblock %}
+{% block path %}{% url 'users_create' %}{% endblock %}
 {% block btn_value %}{% translate 'Register' %}{% endblock %}
 
 
