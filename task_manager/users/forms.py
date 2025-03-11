@@ -36,5 +36,5 @@ class UserUpdateForm(UserRegisterForm):
     def clean_username(self):
         username = self.cleaned_data.get('username')
         if User.objects.exclude(id=self.instance.id).filter(username=username).exists():
-            raise forms.ValidationError(_('This usename is aleady exists'))
+            raise forms.ValidationError(_('This usename is already exists'))
         return username
