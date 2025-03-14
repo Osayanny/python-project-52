@@ -9,6 +9,8 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
 from task_manager.mixins import AuthenticationRequiredMixin, AuthorizationRequiredMixin
+from django.db.models import ProtectedError
+from django.contrib import messages
 
 
 
@@ -36,7 +38,7 @@ class UpdateFormView(AuthenticationRequiredMixin, AuthorizationRequiredMixin, Su
     success_url = reverse_lazy('users_index')
     success_message = _('User was updated successfully')
     permission_denied_message = _('You do not have permission to update another user.')
-    permission_denied_url_name = 'users_index'
+
 
 
 class DeleteFormView(AuthenticationRequiredMixin, AuthorizationRequiredMixin, SuccessMessageMixin, DeleteView):
@@ -46,4 +48,14 @@ class DeleteFormView(AuthenticationRequiredMixin, AuthorizationRequiredMixin, Su
     success_url = reverse_lazy('users_index')
     success_message = _('User was deleted successfully')
     permission_denied_message = _('You do not have permission to delete another user.')
-    permission_denied_url_name = 'users_index'
+
+
+    def post(self, request, *args, **kwargs):
+        try:
+            self.delete(request, *args, **kwargs)
+            messages.success(request, self.success_message)
+            return redirect(self.success_url)
+        except ProtectedError:
+            messages.error(request, _('Cannot delete user because it is in use'))
+            return redirect(self.success_url)
+        
