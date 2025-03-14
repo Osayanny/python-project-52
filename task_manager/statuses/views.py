@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView
 
 from .models import Status
@@ -8,15 +8,13 @@ from django.contrib.messages.views import SuccessMessageMixin
 
 from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
-from task_manager.mixins import AuthenticationRequiredMixin, AuthorizationRequiredMixin
-
+from task_manager.mixins import AuthenticationRequiredMixin
 
 
 class IndexView(AuthenticationRequiredMixin, ListView):
     
     model = Status
     template_name = 'statuses/index.html'
-    permission_denied_url_name = 'statuses_index'
 
 
 class CustomCreateView(AuthenticationRequiredMixin, CreateView):

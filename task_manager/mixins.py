@@ -27,5 +27,5 @@ class AuthorizationRequiredMixin(UserPassesTestMixin):
     def dispatch(self, request, *args, **kwargs):
         if not self.test_func():
             messages.error(request, self.permission_denied_message)
-            return redirect(self.permission_denied_url_name)
+            return redirect(self.success_url)
         return super(UserPassesTestMixin, self).dispatch(request, *args, **kwargs)

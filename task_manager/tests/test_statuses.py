@@ -1,8 +1,6 @@
 from django.test import TestCase
 from task_manager.users.models import User
 from task_manager.statuses.models import Status
-from django.forms.models import model_to_dict
-from task_manager.statuses.forms import StatusCreateForm
 from django.urls import reverse_lazy
 
 
@@ -73,10 +71,10 @@ class AuthenticatedUserTestCase(TestCase):
     def test_status_delete(self):
         #get
         status = Status.objects.get(id=1)
-        url = f'/statuses/{status.id}/update/'
+        url = f'/statuses/{status.id}/delete/'
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'statuses/update.html')
+        self.assertTemplateUsed(response, 'statuses/delete.html')
 
         #Delete status
         response = self.client.post('/statuses/1/delete/')
