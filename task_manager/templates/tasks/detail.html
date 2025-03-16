@@ -7,9 +7,9 @@
     <div class="card-header bg-secondary text-white">
         <h2>{{ task.name }}</h2>
     </div>
-    <div class="cad-body bg-light">
-        <p></p>
-        <br>
+    <div class="card-body bg-light">
+        <p>{{ task.description }}</p>
+        <hr>
         <div class="container">
             <div class="row p-1">
                 <div class="col">{% translate 'Author' %}</div>
@@ -29,12 +29,11 @@
             </div>
             <div class="row p-1">
                 <div class="col">
-                    <h6>{% translate 'Marks' %}:</h6>
+                    <h6>{% translate 'Labels' %}:</h6>
                     <ul>
-                        {% for mark in marks %}
+                        {% for label in task.labels.all %}
                         <li>
-                            :marker
-                            {{ mark }}
+                            {{ label.name }}
                         </li>
                         {% endfor %}
                     </ul>
