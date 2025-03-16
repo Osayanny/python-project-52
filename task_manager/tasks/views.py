@@ -1,5 +1,4 @@
-from django.shortcuts import redirect
-from django.contrib import messages
+
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView, DetailView
 
 from .models import Task
