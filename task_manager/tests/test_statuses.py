@@ -63,16 +63,14 @@ class AuthenticatedUserTestCase(TestCase):
         self.assertTemplateUsed(response, 'statuses/update.html')
 
         #Update status
-        response = self.client.post('/statuses/1/update/', {'name':'upated_name'})
+        response = self.client.post('/statuses/1/update/', {'name':'updated_name'})
         status = Status.objects.get(id=1)
         self.assertRedirects(response, reverse_lazy('statuses_index'))
-        self.assertEqual(status.name, 'upated_name')
+        self.assertEqual(status.name, 'updated_name')
         
     def test_status_delete(self):
         #get
-        status = Status.objects.get(id=1)
-        url = f'/statuses/{status.id}/delete/'
-        response = self.client.get(url)
+        response = self.client.get('/statuses/1/delete/')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'statuses/delete.html')
 
