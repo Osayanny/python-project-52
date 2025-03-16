@@ -3,10 +3,10 @@ from .models import Task
 
 
 class TaskCreateForm(forms.ModelForm):
- 
+
     class Meta:
         model = Task
-        fields = ['name', 'description', 'status', 'executor']
+        fields = ['name', 'description', 'status', 'executor', 'labels']
 
 
 class TaskUpdateForm(TaskCreateForm):
