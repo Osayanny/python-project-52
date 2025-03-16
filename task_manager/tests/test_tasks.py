@@ -30,7 +30,7 @@ class AnonymousUserTestCase(TestCase):
 
 class AuthenticatedUserTestCase(TestCase):
 
-    fixtures = ['users_for_tests', 'statuses_for_tests', 'tasks_for_tests']
+    fixtures = ['users_for_tests', 'statuses_for_tests', 'tasks_for_tests', 'labels_for_tests']
 
     def setUp(self):
         user = User.objects.get(id=1)
@@ -51,7 +51,8 @@ class AuthenticatedUserTestCase(TestCase):
                 'status': 1,
                 'author': 1,
                 'executor': 2,
-                'created_at': "2025-03-03 14:28:00"
+                'labels': [1, 2],
+                'created_at': "2025-03-03 14:28:00",
             }
         )
         task = Task.objects.last()
@@ -65,14 +66,14 @@ class AuthenticatedUserTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'tasks/index.html')
 
-    def test_status_update(self):
+    def test_task_update(self):
         #get
         task = Task.objects.get(id=1)
         response = self.client.get('/tasks/1/update/')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'tasks/update.html')
 
-        #Update status
+        #Update task
         response = self.client.post(
             '/tasks/1/update/',
             {
@@ -81,6 +82,7 @@ class AuthenticatedUserTestCase(TestCase):
                 'status': 1,
                 'author': 1,
                 'executor': 2,
+                'labels':[1],
                 'created_at': "2025-03-03 14:28:00"
             }
         )
@@ -88,7 +90,7 @@ class AuthenticatedUserTestCase(TestCase):
         self.assertRedirects(response, reverse_lazy('tasks_index'))
         self.assertEqual(task.name, 'updated_task')
         
-    def test_status_delete(self):
+    def test_task_delete(self):
         #get
         task = Task.objects.get(id=1)
         url = f'/tasks/{task.id}/delete/'
@@ -96,7 +98,7 @@ class AuthenticatedUserTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'tasks/delete.html')
 
-        #Delete status
+        #Delete task
         response = self.client.post('/tasks/1/delete/')
         self.assertRedirects(response, reverse_lazy('tasks_index'))
-        self.assertEqual(Task.objects.count(), 1)
+        self.assertEqual(Task.objects.count(), 1) 
