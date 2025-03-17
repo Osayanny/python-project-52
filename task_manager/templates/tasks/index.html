@@ -1,4 +1,5 @@
 {% extends 'layouts/base.html' %}
+{% load django_bootstrap5 %}
 {% load i18n %}
 
 {% block content %}
@@ -7,39 +8,7 @@
 <div class="card mb-3">
     <div class="card-body bg-light">
         <form action="/tasks/" class="form-inline center" method="get">
-            <div class="mb-3">
-                <label class="form-label" for="id_status">{% translate 'Status' %}</label>
-                <select class="form-select ml-2 mr-3" name="status" id="id_status">
-                    <option value selected>---------</option>
-                    {% for status in statuses %}
-                    <option value="{{ status.id }}">{{ status.name }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="id_executor">{% translate 'Executor' %}</label>
-                <select class="form-select ml-2 mr-3" name="executor" id="id_executor">
-                    <option value selected>---------</option>
-                    {% for executor in executors %}
-                    <option value="{{ executor.id }}">{{ executor.name }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="id_mark">{% translate 'Label' %}</label>
-                <select class="form-select ml-2 mr-3" name="mark" id="id_mark">
-                    <option value selected>---------</option>
-                    {% for mark in marks %}
-                    <option value="{{ mark.id }}">{{ mark.name }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <div class="mb-3">
-                <div class="form-check">
-                    <input type="checkbox" name="self_tasks" id="id_self_tasks" class="form-check-input mr-3">
-                    <label for="id_self_tasks" class="form-check-label">{% translate 'Only self tasks' %}</label>
-                </div>
-            </div>
+            {% bootstrap_form filter.form field_class="mr-3 ml-2" %}
             <input class="btn btn-primary" type="submit" value="{% translate 'Show' %}">
         </form>
     </div>
