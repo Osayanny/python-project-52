@@ -1,8 +1,9 @@
 
-from django.views.generic import CreateView, UpdateView, DeleteView, ListView, DetailView
-
+from django.views.generic import CreateView, UpdateView, DeleteView, DetailView
+from django_filters.views import FilterView
 from .models import Task
 from .forms import TaskCreateForm, TaskUpdateForm
+from .filters import TaskFilter
 
 from django.contrib.messages.views import SuccessMessageMixin
 
@@ -11,9 +12,10 @@ from django.utils.translation import gettext as _
 from task_manager.mixins import AuthenticationRequiredMixin, AuthorizationRequiredMixin
 
 
-class IndexView(AuthenticationRequiredMixin, ListView):
+class IndexView(AuthenticationRequiredMixin, FilterView):
     
     model = Task
+    filterset_class = TaskFilter
     template_name = 'tasks/index.html'
 
 
