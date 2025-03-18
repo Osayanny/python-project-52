@@ -1,7 +1,7 @@
 from django.test import TestCase
-from task_manager.users.models import User
+from task_manager.apps.users.models import User
 from django.forms.models import model_to_dict
-from task_manager.users.forms import UserRegisterForm, UserUpdateForm
+from task_manager.apps.users.forms import UserRegisterForm
 from django.urls import reverse_lazy
 # Create your tests here.
 

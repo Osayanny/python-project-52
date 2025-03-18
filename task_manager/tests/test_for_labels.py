@@ -1,6 +1,6 @@
 from django.test import TestCase
-from task_manager.users.models import User
-from task_manager.labels.models import Label
+from task_manager.apps.users.models import User
+from task_manager.apps.labels.models import Label
 from django.urls import reverse_lazy
 from django.db.models import ProtectedError
 
@@ -49,8 +49,7 @@ class AuthenticatedUserTestCase(TestCase):
         self.assertEqual(Label.objects.count(), 3)
         self.assertRedirects(response, reverse_lazy('labels_index'))
 
-    def test_labeel_read(self):
-
+    def test_label_read(self):
         response = self.client.get('/labels/')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'labels/index.html')
