@@ -18,7 +18,7 @@
         "fields": {
             "name": "test_task_2",
             "description": "description",
-            "status":1,
+            "status": 2,
             "author": 1,
             "executor": 2,
             "labels": [1],
