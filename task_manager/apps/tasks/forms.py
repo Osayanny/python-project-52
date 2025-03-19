@@ -1,5 +1,6 @@
 from django import forms
 from .models import Task
+from django.utils.translation import gettext as _
 
 
 class TaskCreateForm(forms.ModelForm):
