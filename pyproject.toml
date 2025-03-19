@@ -11,4 +11,5 @@ dependencies = [
     "gunicorn>=23.0.0",
     "python-dotenv>=1.0.1",
     "rollbar>=1.2.0",
+    "ruff>=0.11.0",
 ]
