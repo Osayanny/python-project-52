@@ -10,9 +10,9 @@ class UserRegisterForm(UserCreationForm):
         fields = ('first_name', 'last_name', 'username', 'password1', 'password2')
 
         widgets = {
-            'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder':f'{_('Username')}'}),
-            'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder':f'{_('First name')}'}),
-            'last_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder':f'{_('Last name')}'}),
+            'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder': _('Username')}),
+            'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': _('First name')}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': _('Last name')}),
         }
 
         labels = {
@@ -27,8 +27,8 @@ class UserRegisterForm(UserCreationForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['password1'].widget.attrs.update({'class': 'form-control', 'placeholder':f'{_('Password')}'})
-        self.fields['password2'].widget.attrs.update({'class': 'form-control', 'placeholder':f'{_('Confirm password')}'})
+        self.fields['password1'].widget.attrs.update({'class': 'form-control', 'placeholder':_('Password')})
+        self.fields['password2'].widget.attrs.update({'class': 'form-control', 'placeholder':_('Confirm password')})
 
 
 class UserUpdateForm(UserRegisterForm):
