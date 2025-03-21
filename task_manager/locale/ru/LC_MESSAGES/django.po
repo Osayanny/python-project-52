@@ -309,7 +309,7 @@ msgstr "Зарегистрировать"
 
 #: .\task_manager\templates\users\delete.html:4
 msgid "Delete user"
-msgstr "Удалить пользователя"
+msgstr "Удаление пользователя"
 
 #: .\task_manager\templates\users\index.html:10
 msgid "Full name"
@@ -317,7 +317,7 @@ msgstr "Полное имя"
 
 #: .\task_manager\templates\users\update.html:6
 msgid "Edit user"
-msgstr "Изменить пользователя"
+msgstr "Изменение пользователя"
 
 #: .\task_manager\views.py:20
 msgid "You are logged in"
