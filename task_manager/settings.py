@@ -132,7 +132,19 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
+USE_L10N = True
+
 USE_TZ = True
+
+LANGUAGES = (
+    ('ru', 'Russian'),
+    ('en', 'English'),
+)
+
+DEFAULT_CHARSET = 'utf-8'
+FILE_CHARSET = 'utf-8'
+DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+
 
 LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'task_manager', 'locale')
