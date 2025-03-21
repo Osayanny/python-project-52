@@ -250,7 +250,7 @@ msgstr "Выход"
 #: .\task_manager\templates\layouts\navbar_no_auth.html:18
 #: .\task_manager\templates\registration\login.html:6
 msgid "Log in"
-msgstr "Войти"
+msgstr "Вход"
 
 #: .\task_manager\templates\layouts\navbar_no_auth.html:21
 msgid "Sign up"
