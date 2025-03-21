@@ -9,7 +9,7 @@ from task_manager.mixins import (AuthenticationRequiredMixin,
                                  AuthorizationRequiredMixin)
 
 from .filters import TaskFilter
-from .forms import TaskCreateForm, TaskUpdateForm
+from .forms import TaskCreateForm
 from .models import Task
 
 
@@ -36,7 +36,7 @@ class CustomCreateView(AuthenticationRequiredMixin, SuccessMessageMixin, CreateV
 class CustomUpdateView(AuthenticationRequiredMixin, SuccessMessageMixin, UpdateView):
     
     model = Task
-    form_class = TaskUpdateForm
+    form_class = TaskCreateForm
     template_name = 'tasks/update.html'
     success_url = reverse_lazy('tasks_index')
     success_message = _('Task was updated successfully')
