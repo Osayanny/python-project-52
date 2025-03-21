@@ -1,14 +1,13 @@
 
-from django.views.generic import CreateView, UpdateView, DeleteView, ListView
-
-from .models import Status
-from .forms import StatusCreateForm
-
 from django.contrib.messages.views import SuccessMessageMixin
-
 from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
+from django.views.generic import CreateView, DeleteView, ListView, UpdateView
+
 from task_manager.mixins import AuthenticationRequiredMixin
+
+from .forms import StatusCreateForm
+from .models import Status
 
 
 class IndexView(AuthenticationRequiredMixin, ListView):

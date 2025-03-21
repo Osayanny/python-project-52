@@ -1,17 +1,16 @@
-from django.shortcuts import redirect
-from django.views.generic import CreateView, UpdateView, DeleteView, ListView
-
-from .models import User
-from .forms import UserRegisterForm, UserUpdateForm
-
+from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
-
+from django.db.models import ProtectedError
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
-from task_manager.mixins import AuthenticationRequiredMixin, AuthorizationRequiredMixin
-from django.db.models import ProtectedError
-from django.contrib import messages
+from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
+from task_manager.mixins import (AuthenticationRequiredMixin,
+                                 AuthorizationRequiredMixin)
+
+from .forms import UserRegisterForm, UserUpdateForm
+from .models import User
 
 
 class IndexView(ListView):

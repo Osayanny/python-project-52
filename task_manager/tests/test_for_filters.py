@@ -1,5 +1,7 @@
 from django.test import TestCase
+
 from ..apps.users.models import User
+
 
 class FilterTestCase(TestCase):
 

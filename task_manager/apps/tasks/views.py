@@ -1,15 +1,16 @@
 
-from django.views.generic import CreateView, UpdateView, DeleteView, DetailView
-from django_filters.views import FilterView
-from .models import Task
-from .forms import TaskCreateForm, TaskUpdateForm
-from .filters import TaskFilter
-
 from django.contrib.messages.views import SuccessMessageMixin
-
 from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
-from task_manager.mixins import AuthenticationRequiredMixin, AuthorizationRequiredMixin
+from django.views.generic import CreateView, DeleteView, DetailView, UpdateView
+from django_filters.views import FilterView
+
+from task_manager.mixins import (AuthenticationRequiredMixin,
+                                 AuthorizationRequiredMixin)
+
+from .filters import TaskFilter
+from .forms import TaskCreateForm, TaskUpdateForm
+from .models import Task
 
 
 class IndexView(AuthenticationRequiredMixin, FilterView):

@@ -1,14 +1,15 @@
-from django.views.generic import CreateView, UpdateView, DeleteView, ListView
 from django.contrib import messages
-from django.shortcuts import redirect
-from django.db.models import ProtectedError
-from .models import Label
-from .forms import LabelCreateForm
 from django.contrib.messages.views import SuccessMessageMixin
-
+from django.db.models import ProtectedError
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
+from django.views.generic import CreateView, DeleteView, ListView, UpdateView
+
 from task_manager.mixins import AuthenticationRequiredMixin
+
+from .forms import LabelCreateForm
+from .models import Label
 
 
 class IndexView(AuthenticationRequiredMixin, ListView):

@@ -1,8 +1,10 @@
-from django.test import TestCase
-from task_manager.apps.users.models import User
 from django.forms.models import model_to_dict
-from task_manager.apps.users.forms import UserRegisterForm
+from django.test import TestCase
 from django.urls import reverse_lazy
+
+from task_manager.apps.users.forms import UserRegisterForm
+from task_manager.apps.users.models import User
+
 # Create your tests here.
 
 class UserTestCase(TestCase):

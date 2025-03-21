@@ -1,5 +1,7 @@
 from django.db import models
+
 from ..labels.models import Label
+
 # Create your models here.
 
 class Task(models.Model):

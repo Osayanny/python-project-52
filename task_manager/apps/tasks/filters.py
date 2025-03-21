@@ -1,10 +1,12 @@
 import django_filters
 from django import forms
-from .models import Task
-from ..labels.models import Label
-from ..users.models import User
-from ..statuses.models import Status
 from django.utils.translation import gettext_lazy as _
+
+from ..labels.models import Label
+from ..statuses.models import Status
+from ..users.models import User
+from .models import Task
+
 
 class TaskFilter(django_filters.FilterSet):
 
