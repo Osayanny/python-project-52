@@ -16,7 +16,7 @@ class IndexView(AuthenticationRequiredMixin, ListView):
     template_name = 'statuses/index.html'
 
 
-class CustomCreateView(AuthenticationRequiredMixin, CreateView):
+class CustomCreateView(AuthenticationRequiredMixin,SuccessMessageMixin, CreateView):
     
     model = Status
     form_class = StatusCreateForm
