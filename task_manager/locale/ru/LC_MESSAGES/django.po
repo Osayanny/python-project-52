@@ -36,7 +36,7 @@ msgstr "Метка успешно создана"
 
 #: .\task_manager\apps\labels\views.py:36
 msgid "Label was updated successfully"
-msgstr "Метка успешно обновлена"
+msgstr "Метка успешно изменена"
 
 #: .\task_manager\apps\labels\views.py:43
 msgid "Label was deleted successfully"
@@ -52,7 +52,7 @@ msgstr "Статус успешно создан"
 
 #: .\task_manager\apps\statuses\views.py:33
 msgid "Status was updated successfully"
-msgstr "Статус успешно обновлен"
+msgstr "Статус успешно изменен"
 
 #: .\task_manager\apps\statuses\views.py:41
 msgid "Status was deleted successfully"
@@ -144,7 +144,7 @@ msgstr "Пользователь успешно зарегистрирован"
 
 #: .\task_manager\apps\users\views.py:38
 msgid "User was updated successfully"
-msgstr "Пользователь успешно обновлен"
+msgstr "Пользователь успешно изменен"
 
 #: .\task_manager\apps\users\views.py:39
 msgid "You do not have permission to update another user."
@@ -195,7 +195,7 @@ msgstr "Дата создания"
 #: .\task_manager\templates\tasks\index.html:38
 #: .\task_manager\templates\users\index.html:22
 msgid "Update"
-msgstr "Обновить"
+msgstr "Изменить"
 
 #: .\task_manager\templates\labels\index.html:24
 #: .\task_manager\templates\layouts\confim_delete.html:9
@@ -250,7 +250,7 @@ msgstr "Выход"
 #: .\task_manager\templates\layouts\navbar_no_auth.html:18
 #: .\task_manager\templates\registration\login.html:6
 msgid "Log in"
-msgstr "Войти"
+msgstr "Вход"
 
 #: .\task_manager\templates\layouts\navbar_no_auth.html:21
 msgid "Sign up"
