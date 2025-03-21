@@ -12,11 +12,8 @@ class TaskCreateForm(forms.ModelForm):
 
 
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder':_('Name')}),
-            'description': forms.Textarea(attrs={'class': 'form-control', 'placeholder':_('Description')}),
-            'status': forms.Select(attrs={'class': 'form-control', 'placeholder':_('Status')}),
-            'executor': forms.Select(attrs={'class': 'form-control', 'placeholder':_('Executor')}),
-            'labels': forms.SelectMultiple(attrs={'class': 'form-control', 'placeholder':_('Labels')})
+            'name': forms.TextInput(attrs={'placeholder':_('Name')}),
+            'description': forms.Textarea(attrs={'placeholder':_('Description')}),
         }
 
         labels = {
