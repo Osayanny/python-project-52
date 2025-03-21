@@ -18,7 +18,7 @@ class IndexView(AuthenticationRequiredMixin, ListView):
     template_name = 'labels/index.html'
 
 
-class CustomCreateView(AuthenticationRequiredMixin, CreateView):
+class CustomCreateView(AuthenticationRequiredMixin, SuccessMessageMixin, CreateView):
     
     model = Label
     form_class = LabelCreateForm
