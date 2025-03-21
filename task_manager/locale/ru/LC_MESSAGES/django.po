@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-21 14:43+0500\n"
+"POT-Creation-Date: 2025-03-21 16:04+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -198,7 +198,6 @@ msgid "Update"
 msgstr "Изменить"
 
 #: .\task_manager\templates\labels\index.html:24
-#: .\task_manager\templates\layouts\confim_delete.html:9
 #: .\task_manager\templates\statuses\index.html:24
 #: .\task_manager\templates\tasks\detail.html:46
 #: .\task_manager\templates\tasks\index.html:40
@@ -226,6 +225,10 @@ msgstr "Менеджер задач"
 #: .\task_manager\templates\layouts\confim_delete.html:6
 msgid "Are you sure you want to delete"
 msgstr "Вы уверены, что хотите удалить"
+
+#: .\task_manager\templates\layouts\confim_delete.html:9
+msgid "Yes, delete"
+msgstr "Да, удалить"
 
 #: .\task_manager\templates\layouts\navbar_auth.html:11
 #: .\task_manager\templates\layouts\navbar_no_auth.html:11
