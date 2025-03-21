@@ -13,7 +13,7 @@ migrations:
 build:
 	./build.sh
 
-render-start:
+start:
 	gunicorn task_manager.wsgi
 
 devserver:
