@@ -19,7 +19,7 @@ jobs:
           python-version: ${{matrix.python-version}}
       - name: Install dependencies, static and migrations
         run: |
-          make build
+          make build && make install-all
 
       - name: start linter
         run: |

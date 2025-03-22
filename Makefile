@@ -1,6 +1,9 @@
 install:
 	uv sync
 
+install-all:
+	uv sync --all-groups
+
 collectstatic:
 	uv run python3 manage.py collectstatic --noinput
 
@@ -20,6 +23,5 @@ devserver:
 	uv run python3 manage.py runserver
 
 test-coverage:
-	coverage run -m pytest task_manager
 	coverage report -m
 	coverage lcov --output-file reports/lcov.info
