@@ -1,12 +1,12 @@
-from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
-from django.db.models import ProtectedError
-from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
-from task_manager.mixins import AuthenticationRequiredMixin, ProtectionToDeleteMixin
+from task_manager.mixins import (
+    AuthenticationRequiredMixin,
+    ProtectionToDeleteMixin,
+)
 
 from .forms import LabelCreateForm
 from .models import Label
@@ -34,6 +34,7 @@ class CustomUpdateView(AuthenticationRequiredMixin, SuccessMessageMixin, UpdateV
     template_name = 'labels/update.html'
     success_url = reverse_lazy('labels_index')
     success_message = _('Label was updated successfully')
+
 
 class CustomDeleteView(AuthenticationRequiredMixin, SuccessMessageMixin, ProtectionToDeleteMixin, DeleteView):
     

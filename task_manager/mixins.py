@@ -1,8 +1,8 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.db.models import ProtectedError
 from django.shortcuts import redirect
 from django.utils.translation import gettext as _
-from django.db.models import ProtectedError
 
 
 class AuthenticationRequiredMixin(LoginRequiredMixin):
@@ -16,23 +16,37 @@ class AuthenticationRequiredMixin(LoginRequiredMixin):
             messages.error(request, self.access_denied_message)
             return redirect(self.access_denied_url_name)
 
-        return super(LoginRequiredMixin, self).dispatch(request, *args, **kwargs)
+        return super(
+            LoginRequiredMixin,
+            self
+            ).dispatch(
+                request,
+                *args,
+                **kwargs
+                )
 
 
 class AuthorizationRequiredMixin(UserPassesTestMixin):
 
-    permission_denied_message = _('You do not have permission to update another user.')
+    permission_denied_message = _(
+        'You do not have permission to update another user.'
+        )
     
     def test_func(self):
         return self.kwargs.get('pk') == self.request.user.pk
-
 
     def dispatch(self, request, *args, **kwargs):
         if not self.test_func():
             messages.error(request, self.permission_denied_message)
             return redirect(self.success_url)
-        return super(UserPassesTestMixin, self).dispatch(request, *args, **kwargs)
-
+        return super(
+            UserPassesTestMixin,
+            self
+            ).dispatch(
+                request,
+                *args,
+                **kwargs
+                )
 
 
 class ProtectionToDeleteMixin:
@@ -45,4 +59,3 @@ class ProtectionToDeleteMixin:
         except ProtectedError:
             messages.error(request, self.protection_error_message)
             return redirect(self.success_url)
-          

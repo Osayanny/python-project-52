@@ -18,9 +18,9 @@ class UserRegisterForm(UserCreationForm):
         }
 
         labels = {
-            'username':_('Username'),
-            'first_name':_('First Name'),
-            'last_name':_('Last Name'),
+            'username': _('Username'),
+            'first_name': _('First Name'),
+            'last_name': _('Last Name'),
         }
 
         help_texts = {
@@ -29,8 +29,8 @@ class UserRegisterForm(UserCreationForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['password1'].widget.attrs.update({'class': 'form-control', 'placeholder':_('Password')})
-        self.fields['password2'].widget.attrs.update({'class': 'form-control', 'placeholder':_('Confirm password')})
+        self.fields['password1'].widget.attrs.update({'class': 'form-control', 'placeholder': _('Password')})
+        self.fields['password2'].widget.attrs.update({'class': 'form-control', 'placeholder': _('Confirm password')})
 
 
 class UserUpdateForm(UserRegisterForm):

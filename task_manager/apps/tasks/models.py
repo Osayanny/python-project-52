@@ -4,6 +4,7 @@ from ..labels.models import Label
 
 # Create your models here.
 
+
 class Task(models.Model):
     
     name = models.CharField(max_length=255, unique=True)

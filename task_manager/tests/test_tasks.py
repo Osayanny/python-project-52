@@ -30,24 +30,29 @@ class AnonymousUserTestCase(TestCase):
 
 class AuthenticatedUserTestCase(TestCase):
 
-    fixtures = ['users_for_tests', 'statuses_for_tests', 'tasks_for_tests', 'labels_for_tests']
+    fixtures = [
+        'users_for_tests',
+        'statuses_for_tests',
+        'tasks_for_tests',
+        'labels_for_tests'
+        ]
 
     def setUp(self):
         user = User.objects.get(id=1)
         self.client.force_login(user)
 
     def test_task_create(self):
-        #get
+        # get
         response = self.client.get('/tasks/create/')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'tasks/create.html')
 
-        #Create task
+        # Create task
         response = self.client.post(
             '/tasks/create/',
             {
-                'name':'test_task',
-                'description':'test_description',
+                'name': 'test_task',
+                'description': 'test_description',
                 'status': 1,
                 'author': 1,
                 'executor': 2,
@@ -67,22 +72,22 @@ class AuthenticatedUserTestCase(TestCase):
         self.assertTemplateUsed(response, 'tasks/index.html')
 
     def test_task_update(self):
-        #get
+        # get
         task = Task.objects.get(id=1)
         response = self.client.get('/tasks/1/update/')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'tasks/update.html')
 
-        #Update task
+        # Update task
         response = self.client.post(
             '/tasks/1/update/',
             {
-                'name':'updated_task',
-                'description':'updated_description',
+                'name': 'updated_task',
+                'description': 'updated_description',
                 'status': 1,
                 'author': 1,
                 'executor': 2,
-                'labels':[1],
+                'labels': [1],
                 'created_at': "2025-03-03 14:28:00"
             }
         )
@@ -91,14 +96,14 @@ class AuthenticatedUserTestCase(TestCase):
         self.assertEqual(task.name, 'updated_task')
         
     def test_task_delete(self):
-        #get
+        # get
         task = Task.objects.get(id=1)
         url = f'/tasks/{task.id}/delete/'
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'tasks/delete.html')
 
-        #Delete task
+        # Delete task
         response = self.client.post('/tasks/1/delete/')
         self.assertRedirects(response, reverse_lazy('tasks_index'))
         self.assertEqual(Task.objects.count(), 1) 

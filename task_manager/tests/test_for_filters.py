@@ -5,7 +5,12 @@ from ..apps.users.models import User
 
 class FilterTestCase(TestCase):
 
-    fixtures = ['users_for_tests', 'labels_for_tests', 'tasks_for_tests', 'statuses_for_tests']
+    fixtures = [
+        'users_for_tests',
+        'labels_for_tests',
+        'tasks_for_tests',
+        'statuses_for_tests'
+        ]
 
     def setUp(self):
         user = User.objects.get(id=1)

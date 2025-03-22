@@ -4,7 +4,10 @@ from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
-from task_manager.mixins import AuthenticationRequiredMixin, ProtectionToDeleteMixin
+from task_manager.mixins import (
+    AuthenticationRequiredMixin,
+    ProtectionToDeleteMixin,
+)
 
 from .forms import StatusCreateForm
 from .models import Status
@@ -16,13 +19,14 @@ class IndexView(AuthenticationRequiredMixin, ListView):
     template_name = 'statuses/index.html'
 
 
-class CustomCreateView(AuthenticationRequiredMixin,SuccessMessageMixin, CreateView):
+class CustomCreateView(AuthenticationRequiredMixin, SuccessMessageMixin, CreateView):
     
     model = Status
     form_class = StatusCreateForm
     template_name = 'statuses/create.html'
     success_url = reverse_lazy('statuses_index')
     success_message = _('Status was created successfully')
+
 
 class CustomUpdateView(AuthenticationRequiredMixin, SuccessMessageMixin, UpdateView):
 

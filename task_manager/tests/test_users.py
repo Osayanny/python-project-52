@@ -7,17 +7,18 @@ from task_manager.apps.users.models import User
 
 # Create your tests here.
 
+
 class UserTestCase(TestCase):
 
     fixtures = ['users_for_tests']
 
     def test_user_create(self):
-        #get request 
+        # get request 
         response = self.client.get('/users/create/')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'users/create.html')
 
-        #Post request with right data
+        # Post request with right data
         response = self.client.post(
             '/users/create/',
             {
@@ -33,53 +34,67 @@ class UserTestCase(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse_lazy('login'))
 
-        #Post request with wrong data
-        user_dict = model_to_dict(user, ['fist_name', 'last_name', 'username', 'password'])
+        # Post request with wrong data
+        user_dict = model_to_dict(
+            user,
+            ['fist_name',
+             'last_name',
+             'username',
+             'password']
+             )
         response = self.client.post('/users/create/', user_dict)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'users/create.html')
 
         form = UserRegisterForm(data=user_dict)
-        self.assertFormError(form=form, field='username', errors='Пользователь с таким именем уже существует.')
+        self.assertFormError(
+            form=form,
+            field='username',
+            errors='Пользователь с таким именем уже существует.')
 
     def test_user_read(self):
         response = self.client.get('/users/')
 
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'users/index.html')
-        self.assertTrue(len(response.context['object_list'])==2)
+        self.assertTrue(len(response.context['object_list']) == 2)
 
     def test_user_update(self):
-        #update for anonymous user
+        # update for anonymous user
         response = self.client.get('/users/1/update')
         self.assertRedirects(response, reverse_lazy('login'))
 
-        #update for another user
+        # update for another user
         user = User.objects.get(id=1)
         self.client.force_login(user)
         response = self.client.get('/users/2/update')
         self.assertRedirects(response, reverse_lazy('users_index'))
-        self.assertRaisesMessage(PermissionError, 'You do not have permission to update another user.')
+        self.assertRaisesMessage(
+            PermissionError,
+            'You do not have permission to update another user.'
+            )
 
-        #update for current user
+        # update for current user
         response = self.client.get(f'/users/{user.id}/update')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed('users/update.html')
 
-    
     def test_user_delete(self):
-        #delete for anonymous user
+        # delete for anonymous user
         response = self.client.get('/users/1/delete')
         self.assertRedirects(response, reverse_lazy('login'))
 
-        #delete for another user
+        # delete for another user
         user = User.objects.get(id=1)
         self.client.force_login(user)
         response = self.client.get('/users/2/delete')
         self.assertRedirects(response, reverse_lazy('users_index'))
-        self.assertRaisesMessage(PermissionError, 'You do not have permission to delete another user.')
+        self.assertRaisesMessage(
+            PermissionError,
+            'You do not have permission to delete another user.'
+            )
 
-        #delete for current user
+        # delete for current user
         response = self.client.get(f'/users/{user.id}/delete')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed('users/delete.html')

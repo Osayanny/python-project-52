@@ -5,8 +5,10 @@ from django.utils.translation import gettext as _
 from django.views.generic import CreateView, DeleteView, DetailView, UpdateView
 from django_filters.views import FilterView
 
-from task_manager.mixins import (AuthenticationRequiredMixin,
-                                 AuthorizationRequiredMixin)
+from task_manager.mixins import (
+    AuthenticationRequiredMixin,
+    AuthorizationRequiredMixin,
+)
 
 from .filters import TaskFilter
 from .forms import TaskCreateForm
@@ -40,6 +42,7 @@ class CustomUpdateView(AuthenticationRequiredMixin, SuccessMessageMixin, UpdateV
     template_name = 'tasks/update.html'
     success_url = reverse_lazy('tasks_index')
     success_message = _('Task was updated successfully')
+
 
 class CustomDeleteView(AuthenticationRequiredMixin, AuthorizationRequiredMixin, SuccessMessageMixin, DeleteView):
     
