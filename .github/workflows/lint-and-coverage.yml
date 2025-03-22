@@ -30,8 +30,6 @@ jobs:
       
       - name: Run tests with coverage
         run: |
-          pwd
-          tree
           make test-coverage
       
       # Отправка данных в Qlty
