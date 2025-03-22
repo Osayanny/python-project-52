@@ -38,7 +38,7 @@ class AuthorizationRequiredMixin(UserPassesTestMixin):
     def dispatch(self, request, *args, **kwargs):
         if not self.test_func():
             messages.error(request, self.permission_denied_message)
-            return redirect(self.success_url)
+            return redirect(self.success_url, 302)
         return super(
             UserPassesTestMixin,
             self
@@ -55,7 +55,7 @@ class ProtectionToDeleteMixin:
         try:
             self.delete(request, *args, **kwargs)
             messages.success(request, self.success_message)
-            return redirect(self.success_url)
+            return redirect(self.success_url, 200)
         except ProtectedError:
             messages.error(request, self.protection_error_message)
-            return redirect(self.success_url)
+            return redirect(self.success_url, 302)
