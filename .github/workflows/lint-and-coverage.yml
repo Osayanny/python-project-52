@@ -28,7 +28,7 @@ jobs:
       -name: generate coverage report
         run: |
           make test-coverage
-          
+
       - uses: qltysh/qlty-action/coverage@main
         with:
           coverage-token: ${{secrets.QLTY_COVERAGE_TOKEN}}
