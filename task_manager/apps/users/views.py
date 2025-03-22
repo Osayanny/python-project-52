@@ -36,7 +36,6 @@ class UpdateFormView(AuthenticationRequiredMixin, AuthorizationRequiredMixin, Su
     template_name = 'users/update.html'
     success_url = reverse_lazy('users_index')
     success_message = _('User was updated successfully')
-    permission_denied_message = _('You do not have permission to update another user.')
 
 
 
@@ -46,7 +45,6 @@ class DeleteFormView(AuthenticationRequiredMixin, AuthorizationRequiredMixin, Su
     template_name = 'users/delete.html'
     success_url = reverse_lazy('users_index')
     success_message = _('User was deleted successfully')
-    permission_denied_message = _('You do not have permission to delete another user.')
 
 
     def post(self, request, *args, **kwargs):

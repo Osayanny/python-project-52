@@ -19,6 +19,8 @@ class AuthenticationRequiredMixin(LoginRequiredMixin):
 
 
 class AuthorizationRequiredMixin(UserPassesTestMixin):
+
+    permission_denied_message = _('You do not have permission to update another user.')
     
     def test_func(self):
         return self.kwargs.get('pk') == self.request.user.pk
