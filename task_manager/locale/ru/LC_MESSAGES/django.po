@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-22 12:04+0500\n"
+"POT-Creation-Date: 2025-03-22 12:32+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,9 +43,9 @@ msgstr "Метка успешно изменена"
 msgid "Label was deleted successfully"
 msgstr "Метка успешно удалена"
 
-#: .\task_manager\apps\labels\views.py:51
+#: .\task_manager\apps\labels\views.py:44
 msgid "Cannot delete label because it is in use"
-msgstr "Нельзя удалить метку, которая используется"
+msgstr "Невозможно удалить метку, которая используется"
 
 #: .\task_manager\apps\statuses\views.py:25
 msgid "Status was created successfully"
@@ -58,6 +58,10 @@ msgstr "Статус успешно изменен"
 #: .\task_manager\apps\statuses\views.py:41
 msgid "Status was deleted successfully"
 msgstr "Статус успешно удален"
+
+#: .\task_manager\apps\statuses\views.py:42
+msgid "Cannot delete status because it is in use"
+msgstr "Невозможно удалить статус, потому что он используется"
 
 #: .\task_manager\apps\tasks\filters.py:22
 msgid "Show self tasks"
@@ -149,33 +153,29 @@ msgstr "Подтверждение пароля"
 msgid "This usename is already exists"
 msgstr "Пользователь с таким именем уже существует."
 
-#: .\task_manager\apps\users\views.py:28
+#: .\task_manager\apps\users\views.py:29
 msgid "User was added successfully"
 msgstr "Пользователь успешно зарегистрирован"
 
-#: .\task_manager\apps\users\views.py:38
+#: .\task_manager\apps\users\views.py:39
 msgid "User was updated successfully"
 msgstr "Пользователь успешно изменен"
-
-#: .\task_manager\apps\users\views.py:39
-msgid "You do not have permission to update another user."
-msgstr "У вас нет прав для изменения другого пользователя."
 
 #: .\task_manager\apps\users\views.py:48
 msgid "User was deleted successfully"
 msgstr "Пользователь успешно удален"
 
 #: .\task_manager\apps\users\views.py:49
-msgid "You do not have permission to delete another user."
-msgstr "У вас нет прав для удаления другого пользователя."
-
-#: .\task_manager\apps\users\views.py:58
 msgid "Cannot delete user because it is in use"
 msgstr "Невозможно удалить пользователя, потому что он используется"
 
-#: .\task_manager\mixins.py:9
+#: .\task_manager\mixins.py:10
 msgid "You are not authorized! Please log in."
 msgstr "Вы не авторизованы! Пожалуйста, выполните вход."
+
+#: .\task_manager\mixins.py:24
+msgid "You do not have permission to update another user."
+msgstr "У вас нет прав для изменения другого пользователя."
 
 #: .\task_manager\templates\labels\create.html:4
 #: .\task_manager\templates\labels\index.html:7
@@ -340,3 +340,6 @@ msgstr "Вы залогинены"
 #: .\task_manager\views.py:33
 msgid "You are logged out"
 msgstr "Вы разлогинены"
+
+#~ msgid "You do not have permission to delete another user."
+#~ msgstr "У вас нет прав для удаления другого пользователя."
