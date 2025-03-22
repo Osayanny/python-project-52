@@ -20,6 +20,6 @@ devserver:
 	uv run python3 manage.py runserver
 
 test-coverage:
-	coverage run -m pytest tests/
+	coverage run -m pytest task_manager/tests
 	coverage report -m
 	coverage lcov --output-file reports/lcov.info
