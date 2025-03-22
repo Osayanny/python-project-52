@@ -29,3 +29,11 @@ jobs:
         with:
           coverage-token: ${{secrets.QLTY_COVERAGE_TOKEN}}
           files: reports/lcov.info
+
+      - name: Update Badge
+        run: |
+          curl -X POST \
+          https://qlty.sh/api/v1/badges/coverage \
+          -H "Authorization: Bearer ${{ secrets.QLTY_COVERAGE_TOKEN }}" \
+          -H "Content-Type: application/json" \
+          -d '{"repository":"python-project-52"}'
