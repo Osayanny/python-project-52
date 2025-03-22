@@ -91,11 +91,11 @@ msgstr "Описание"
 
 #: .\task_manager\apps\tasks\views.py:29
 msgid "Task was created successfully"
-msgstr "Задача успешно удалена"
+msgstr "Задача успешно создана"
 
 #: .\task_manager\apps\tasks\views.py:42
 msgid "Task was updated successfully"
-msgstr "Задача успешно удалена"
+msgstr "Задача успешно изменена"
 
 #: .\task_manager\apps\tasks\views.py:49
 msgid "Task was deleted successfully"
@@ -103,7 +103,7 @@ msgstr "Задача успешно удалена"
 
 #: .\task_manager\apps\tasks\views.py:50
 msgid "A task can only be deleted by its author."
-msgstr "Задаача может быть удалена только автором"
+msgstr "Задача может быть удалена только автором"
 
 #: .\task_manager\apps\users\forms.py:15 .\task_manager\apps\users\forms.py:21
 #: .\task_manager\templates\users\index.html:9
