@@ -25,19 +25,15 @@ jobs:
         run: |
           uv run ruff check
 
-      -name: generate coverage report
+      - name: Install Qlty
+        run: curl https://qlty.sh | sh
+      
+      - name: Run tests with coverage
         run: |
           make test-coverage
-
-      - uses: qltysh/qlty-action/coverage@main
-        with:
-          coverage-token: ${{secrets.QLTY_COVERAGE_TOKEN}}
-          files: coverage.lcov
-
-      - name: Update Badge
-        run: |
-          curl -X POST \
-          https://qlty.sh/api/v1/badges/coverage \
-          -H "Authorization: Bearer ${{ secrets.QLTY_COVERAGE_TOKEN }}" \
-          -H "Content-Type: application/json" \
-          -d '{"repository":"python-project-52"}'
+      
+      # Отправка данных в Qlty
+      - name: Upload coverage to Qlty
+        env:
+          QLTY_COVERAGE_TOKEN: ${{ secrets.QLTY_COVERAGE_TOKEN }}
+        run: qlty coverage publish reports/lcov.info
