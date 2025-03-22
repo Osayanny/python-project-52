@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import redirect
 from django.utils.translation import gettext as _
+from django.db.models import ProtectedError
 
 
 class AuthenticationRequiredMixin(LoginRequiredMixin):
@@ -31,3 +32,17 @@ class AuthorizationRequiredMixin(UserPassesTestMixin):
             messages.error(request, self.permission_denied_message)
             return redirect(self.success_url)
         return super(UserPassesTestMixin, self).dispatch(request, *args, **kwargs)
+
+
+
+class ProtectionToDeleteMixin:
+
+    def post(self, request, *args, **kwargs):
+        try:
+            self.delete(request, *args, **kwargs)
+            messages.success(request, self.success_message)
+            return redirect(self.success_url)
+        except ProtectedError:
+            messages.error(request, self.protection_error_message)
+            return redirect(self.success_url)
+          
