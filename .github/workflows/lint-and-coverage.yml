@@ -19,14 +19,11 @@ jobs:
           python-version: ${{matrix.python-version}}
       - name: Install dependencies, static and migrations
         run: |
-          make build && make install-all
+          make build && make install-all && uv add qlty
 
       - name: start linter
         run: |
           uv run ruff check
-
-      - name: Install Qlty
-        run: curl https://qlty.sh | sh
       
       - name: Run tests with coverage
         env:
@@ -38,4 +35,4 @@ jobs:
       - name: Upload coverage to Qlty
         env:
           QLTY_COVERAGE_TOKEN: ${{ secrets.QLTY_COVERAGE_TOKEN }}
-        run: qlty coverage publish coverage.lcov
+        run: uv run qlty coverage publish coverage.lcov
