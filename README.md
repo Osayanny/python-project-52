@@ -1,5 +1,7 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/Osayanny/python-project-52/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Osayanny/python-project-52/actions)
+[![Maintainability](https://qlty.sh/badges/42954886-5c52-4a2b-8061-721d468bfa59/maintainability.svg)](https://qlty.sh/gh/Osayanny/projects/python-project-52)
+[![Code Coverage](https://qlty.sh/badges/42954886-5c52-4a2b-8061-721d468bfa59/test_coverage.svg)](https://qlty.sh/gh/Osayanny/projects/python-project-52)
 
 
 # Task Manager
