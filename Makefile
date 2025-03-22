@@ -18,3 +18,6 @@ start:
 
 devserver:
 	uv run python3 manage.py runserver
+
+test-coverage:
+	coverage lcov
