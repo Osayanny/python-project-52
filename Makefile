@@ -23,6 +23,6 @@ devserver:
 	uv run python3 manage.py runserver
 
 test-coverage:
-	coverage run -m pytest 
-	coverage report -m
-	coverage lcov
+	uv run coverage run -m pytest 
+	uv run coverage report -m
+	uv run coverage lcov
