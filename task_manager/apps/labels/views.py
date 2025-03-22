@@ -1,12 +1,12 @@
-from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
-from django.db.models import ProtectedError
-from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
-from task_manager.mixins import AuthenticationRequiredMixin, ProtectionToDeleteMixin
+from task_manager.mixins import (
+    AuthenticationRequiredMixin,
+    ProtectionToDeleteMixin,
+)
 
 from .forms import LabelCreateForm
 from .models import Label
@@ -18,7 +18,11 @@ class IndexView(AuthenticationRequiredMixin, ListView):
     template_name = 'labels/index.html'
 
 
-class CustomCreateView(AuthenticationRequiredMixin, SuccessMessageMixin, CreateView):
+class CustomCreateView(
+    AuthenticationRequiredMixin,
+    SuccessMessageMixin,
+    CreateView
+    ):
     
     model = Label
     form_class = LabelCreateForm
@@ -27,7 +31,11 @@ class CustomCreateView(AuthenticationRequiredMixin, SuccessMessageMixin, CreateV
     success_message = _('Label was created successfully')
 
 
-class CustomUpdateView(AuthenticationRequiredMixin, SuccessMessageMixin, UpdateView):
+class CustomUpdateView(
+    AuthenticationRequiredMixin,
+    SuccessMessageMixin,
+    UpdateView
+    ):
     
     model = Label
     form_class = LabelCreateForm
@@ -35,7 +43,13 @@ class CustomUpdateView(AuthenticationRequiredMixin, SuccessMessageMixin, UpdateV
     success_url = reverse_lazy('labels_index')
     success_message = _('Label was updated successfully')
 
-class CustomDeleteView(AuthenticationRequiredMixin, SuccessMessageMixin, ProtectionToDeleteMixin, DeleteView):
+
+class CustomDeleteView(
+    AuthenticationRequiredMixin,
+    SuccessMessageMixin,
+    ProtectionToDeleteMixin,
+    DeleteView
+    ):
     
     model = Label
     template_name = 'labels/delete.html'

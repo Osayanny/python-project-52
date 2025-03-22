@@ -12,11 +12,11 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 from pathlib import Path
 
+import dj_database_url
 from django.contrib import messages
 from dotenv import load_dotenv
-import dj_database_url
 
-#Load variables ffom .env file
+# Load variables ffom .env file
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -91,7 +91,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'task_manager.wsgi.application'
 
 
-#Rollbar settings
+# Rollbar settings
 ROLLBAR = {
     'access_token': os.getenv('ACCESS_TOKEN'),
     'environment': 'development' if DEBUG else 'production',
@@ -163,7 +163,7 @@ STATIC_ROOT = BASE_DIR / 'task_manager' / 'static'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-#Messages settings
+# Messages settings
 
 MESSAGE_TAGS = {
     messages.ERROR: 'danger'

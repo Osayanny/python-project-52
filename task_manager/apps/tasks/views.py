@@ -5,8 +5,10 @@ from django.utils.translation import gettext as _
 from django.views.generic import CreateView, DeleteView, DetailView, UpdateView
 from django_filters.views import FilterView
 
-from task_manager.mixins import (AuthenticationRequiredMixin,
-                                 AuthorizationRequiredMixin)
+from task_manager.mixins import (
+    AuthenticationRequiredMixin,
+    AuthorizationRequiredMixin,
+)
 
 from .filters import TaskFilter
 from .forms import TaskCreateForm
@@ -20,7 +22,11 @@ class IndexView(AuthenticationRequiredMixin, FilterView):
     template_name = 'tasks/index.html'
 
 
-class CustomCreateView(AuthenticationRequiredMixin, SuccessMessageMixin, CreateView):
+class CustomCreateView(
+    AuthenticationRequiredMixin,
+    SuccessMessageMixin,
+    CreateView
+    ):
    
     model = Task
     form_class = TaskCreateForm
@@ -33,7 +39,11 @@ class CustomCreateView(AuthenticationRequiredMixin, SuccessMessageMixin, CreateV
         return super().form_valid(form) 
 
 
-class CustomUpdateView(AuthenticationRequiredMixin, SuccessMessageMixin, UpdateView):
+class CustomUpdateView(
+    AuthenticationRequiredMixin,
+    SuccessMessageMixin,
+    UpdateView
+    ):
     
     model = Task
     form_class = TaskCreateForm
@@ -41,7 +51,13 @@ class CustomUpdateView(AuthenticationRequiredMixin, SuccessMessageMixin, UpdateV
     success_url = reverse_lazy('tasks_index')
     success_message = _('Task was updated successfully')
 
-class CustomDeleteView(AuthenticationRequiredMixin, AuthorizationRequiredMixin, SuccessMessageMixin, DeleteView):
+
+class CustomDeleteView(
+    AuthenticationRequiredMixin,
+    AuthorizationRequiredMixin,
+    SuccessMessageMixin,
+    DeleteView
+    ):
     
     model = Task
     template_name = 'tasks/delete.html'
@@ -55,7 +71,11 @@ class CustomDeleteView(AuthenticationRequiredMixin, AuthorizationRequiredMixin, 
         return task_author == self.request.user
 
 
-class CustomDetailView(AuthenticationRequiredMixin, SuccessMessageMixin, DetailView):
+class CustomDetailView(
+    AuthenticationRequiredMixin,
+    SuccessMessageMixin,
+    DetailView
+    ):
     
     model = Task
     template_name = 'tasks/detail.html'

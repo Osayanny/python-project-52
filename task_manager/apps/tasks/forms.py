@@ -10,10 +10,13 @@ class TaskCreateForm(forms.ModelForm):
         model = Task
         fields = ['name', 'description', 'status', 'executor', 'labels']
 
-
         widgets = {
-            'name': forms.TextInput(attrs={'placeholder':_('Name')}),
-            'description': forms.Textarea(attrs={'placeholder':_('Description')}),
+            'name': forms.TextInput(attrs={'placeholder': _('Name')}),
+            'description': forms.Textarea(
+                attrs={
+                    'placeholder': _('Description')
+                    }
+                ),
         }
 
         labels = {

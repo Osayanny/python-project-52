@@ -27,6 +27,7 @@ class CustomLoginView(LoginView):
         else:
             return self.form_invalid(form)
 
+
 class CustomLogoutView(LogoutView):
 
     success_url = 'users_index'

@@ -15,7 +15,6 @@ class TaskFilter(django_filters.FilterSet):
             return queryset.filter(author=self.request.user)
         return queryset
 
-
     own_tasks = django_filters.BooleanFilter(
         method='show_self_tasks',
         widget=forms.CheckboxInput,
@@ -25,19 +24,19 @@ class TaskFilter(django_filters.FilterSet):
     labels = django_filters.ModelChoiceFilter(
         queryset=Label.objects.all(),
         widget=forms.Select,
-        label = _('Label')
+        label=_('Label')
     )
 
     executor = django_filters.ModelChoiceFilter(
-        queryset = User.objects.all(),
-        widget = forms.Select,
-        label = _('Executor')
+        queryset=User.objects.all(),
+        widget=forms.Select,
+        label=_('Executor')
     )
 
     status = django_filters.ModelChoiceFilter(
-        queryset = Status.objects.all(),
-        widget = forms.Select,
-        label = _('Status')
+        queryset=Status.objects.all(),
+        widget=forms.Select,
+        label=_('Status')
     )
 
     class Meta:
