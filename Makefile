@@ -1,6 +1,9 @@
 install:
 	uv sync
 
+install-all:
+	uv sync --all-groups
+
 collectstatic:
 	uv run python3 manage.py collectstatic --noinput
 
