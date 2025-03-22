@@ -45,4 +45,4 @@ class tasks_labels(models.Model):
         Label,
         on_delete=models.PROTECT,
         related_name='labels'
-        )
+    )
