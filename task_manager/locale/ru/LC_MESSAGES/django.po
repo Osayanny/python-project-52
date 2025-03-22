@@ -110,7 +110,7 @@ msgstr "Задача успешно удалена"
 
 #: .\task_manager\apps\tasks\views.py:50
 msgid "A task can only be deleted by its author."
-msgstr "Задача может быть удалена только автором"
+msgstr "Задачу может удалить только ее автор"
 
 #: .\task_manager\apps\users\forms.py:15 .\task_manager\apps\users\forms.py:21
 #: .\task_manager\templates\users\index.html:9
