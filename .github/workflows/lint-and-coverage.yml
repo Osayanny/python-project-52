@@ -38,4 +38,4 @@ jobs:
       - name: Upload coverage to Qlty
         env:
           QLTY_COVERAGE_TOKEN: ${{ secrets.QLTY_COVERAGE_TOKEN }}
-        run: qlty coverage publish reports/lcov.info
+        run: qlty coverage publish coverage.lcov
