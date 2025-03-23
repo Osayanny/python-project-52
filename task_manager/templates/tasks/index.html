@@ -4,10 +4,10 @@
 
 {% block content %}
 <h1 class="my-4">{% translate 'Tasks' %}</h1>
-<a class="btn btn-primary mb-3" href="/tasks/create">{% translate 'Create task' %}</a>
+<a class="btn btn-primary mb-3" href="{% url 'tasks_create' %}">{% translate 'Create task' %}</a>
 <div class="card mb-3">
     <div class="card-body bg-light">
-        <form action="/tasks/" class="form-inline center" method="get">
+        <form action="{% url 'tasks_index' %}" class="form-inline center" method="get">
             {% bootstrap_form filter.form field_class="mr-3 ml-2" %}
             <input class="btn btn-primary" type="submit" value="{% translate 'Show' %}">
         </form>
