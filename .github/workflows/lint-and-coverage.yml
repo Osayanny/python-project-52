@@ -19,20 +19,21 @@ jobs:
           python-version: ${{matrix.python-version}}
       - name: Install dependencies, static and migrations
         run: |
-          make build && make install-all && uv add qlty
+          make build && make install-all
 
       - name: start linter
         run: |
           uv run ruff check
       
-      - name: Run tests with coverage
-        env:
-          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      - name: start tests and linter
         run: |
-          make test-coverage
-      
-      # Отправка данных в Qlty
-      - name: Upload coverage to Qlty
+          make check
+
+      - name: code coverage and publish
+        uses: paambaati/codeclimate-action@v5.0.0
+        if: github.ref_name == 'main'
         env:
-          QLTY_COVERAGE_TOKEN: ${{ secrets.QLTY_COVERAGE_TOKEN }}
-        run: uv run qlty coverage publish coverage.lcov
+          CC_TEST_REPORTER_ID: ${{secrets.CC_REPORTER_ID}}
+        with: 
+          coverageCommand: make test-coverage
+          debug: True
