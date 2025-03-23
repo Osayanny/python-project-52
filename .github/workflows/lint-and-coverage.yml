@@ -24,10 +24,6 @@ jobs:
       - name: start linter
         run: |
           uv run ruff check
-      
-      - name: start tests and linter
-        run: |
-          make check
 
       - name: code coverage and publish
         uses: paambaati/codeclimate-action@v5.0.0
