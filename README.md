@@ -1,7 +1,7 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/Osayanny/python-project-52/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Osayanny/python-project-52/actions)
-[![Maintainability](https://qlty.sh/badges/42954886-5c52-4a2b-8061-721d468bfa59/maintainability.svg)](https://qlty.sh/gh/Osayanny/projects/python-project-52)
-[![Code Coverage](https://qlty.sh/badges/42954886-5c52-4a2b-8061-721d468bfa59/test_coverage.svg)](https://qlty.sh/gh/Osayanny/projects/python-project-52)
+[![Maintainability](https://api.codeclimate.com/v1/badges/200d6f29f9b654041d2b/maintainability)](https://codeclimate.com/github/Osayanny/python-project-52/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/200d6f29f9b654041d2b/test_coverage)](https://codeclimate.com/github/Osayanny/python-project-52/test_coverage)
 
 
 # Task Manager
