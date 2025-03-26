@@ -14,12 +14,7 @@
     </head>
     <body class="d-flex flex-column min-vh-100">
       
-        {% if request.user.is_authenticated %}
-          {% include 'layouts/navbar_auth.html' %}
-        {% else %}
-          {% include 'layouts/navbar_no_auth.html' %}
-        {% endif %}
-
+        {% include 'layouts/navbar.html' %}
         <div class="container wrapper flex-grow-1">
         {% include 'layouts/flash.html' %}
         {% block content %}{% endblock %}
