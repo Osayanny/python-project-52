@@ -77,6 +77,9 @@ class AuthenticatedUserTestCase(TestCase):
         label = Label.objects.get(id=1)
         self.assertRedirects(response, reverse_lazy('labels_index'))
         self.assertEqual(label.name, 'updated_name')
+        response = self.client.get('/labels/')
+        self.assertContains(response, 'updated_name')
+        
         
     def test_related_label_delete(self):
         # get
