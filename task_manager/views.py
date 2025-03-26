@@ -1,9 +1,9 @@
 from django.contrib import messages
 from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
 from django.views.generic.base import TemplateView
-from django.contrib.messages.views import SuccessMessageMixin
 
 
 class IndexView(TemplateView):
@@ -15,7 +15,6 @@ class CustomLoginView(SuccessMessageMixin, LoginView):
 
     success_url = reverse_lazy('users_index')
     success_message = _('You are logged in')
-
 
 
 class CustomLogoutView(LogoutView):

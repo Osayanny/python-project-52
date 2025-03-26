@@ -80,7 +80,6 @@ class AuthenticatedUserTestCase(TestCase):
         response = self.client.get('/labels/')
         self.assertContains(response, 'updated_name')
         
-        
     def test_related_label_delete(self):
         # get
         response = self.client.get('/labels/1/delete/')
