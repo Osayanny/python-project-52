@@ -33,7 +33,8 @@ class AuthorizationRequiredMixin(UserPassesTestMixin):
         )
     
     def test_func(self):
-        return self.kwargs.get('pk') == self.request.user.pk
+        user = self.get_object()
+        return user == self.request.user
 
     def dispatch(self, request, *args, **kwargs):
         if not self.test_func():
