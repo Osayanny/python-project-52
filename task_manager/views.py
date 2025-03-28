@@ -11,13 +11,13 @@ class IndexView(TemplateView):
     template_name = 'index.html'
 
 
-class CustomLoginView(SuccessMessageMixin, LoginView):
+class UserLoginView(SuccessMessageMixin, LoginView):
 
     success_url = reverse_lazy('users_index')
     success_message = _('You are logged in')
 
 
-class CustomLogoutView(LogoutView):
+class UserLogoutView(LogoutView):
 
     success_url = 'users_index'
     success_message = _('You are logged out')

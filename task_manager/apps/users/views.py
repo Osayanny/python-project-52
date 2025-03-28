@@ -6,6 +6,7 @@ from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 from task_manager.mixins import (
     AuthenticationRequiredMixin,
     AuthorizationRequiredMixin,
+    NoPermissionHandleMixin,
     ProtectionToDeleteMixin,
 )
 
@@ -19,7 +20,7 @@ class IndexView(ListView):
     template_name = 'users/index.html'
 
 
-class CreateFormView(SuccessMessageMixin, CreateView):
+class UserCreateView(SuccessMessageMixin, CreateView):
 
     model = User
     form_class = UserRegisterForm
@@ -28,7 +29,8 @@ class CreateFormView(SuccessMessageMixin, CreateView):
     success_message = _('User was added successfully')
 
 
-class UpdateFormView(
+class UserUpdateView(
+    NoPermissionHandleMixin,
     AuthenticationRequiredMixin,
     AuthorizationRequiredMixin,
     SuccessMessageMixin,
@@ -42,7 +44,8 @@ class UpdateFormView(
     success_message = _('User was updated successfully')
 
 
-class DeleteFormView(
+class UserDeleteView(
+    NoPermissionHandleMixin,
     AuthenticationRequiredMixin,
     AuthorizationRequiredMixin,
     SuccessMessageMixin,
@@ -55,3 +58,13 @@ class DeleteFormView(
     success_url = reverse_lazy('users_index')
     success_message = _('User was deleted successfully')
     protection_error_message = _('Cannot delete user because it is in use')
+
+    def check(self, request, *args, **kwargs):
+        user_id = kwargs.get('pk')
+        user = User.objects.get(id=user_id)
+        authors = user.authors.all()
+        executors = user.executors.all()
+
+        if authors or executors:
+            return False
+        return True

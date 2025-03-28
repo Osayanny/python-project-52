@@ -19,7 +19,7 @@ class IndexView(AuthenticationRequiredMixin, ListView):
     template_name = 'statuses/index.html'
 
 
-class CustomCreateView(
+class StatusCreateView(
     AuthenticationRequiredMixin,
     SuccessMessageMixin,
     CreateView
@@ -32,7 +32,7 @@ class CustomCreateView(
     success_message = _('Status was created successfully')
 
 
-class CustomUpdateView(
+class StatusUpdateView(
     AuthenticationRequiredMixin,
     SuccessMessageMixin,
     UpdateView
@@ -45,7 +45,7 @@ class CustomUpdateView(
     success_message = _('Status was updated successfully')
 
 
-class CustomDeleteView(
+class StatusDeleteView(
     AuthenticationRequiredMixin,
     SuccessMessageMixin,
     ProtectionToDeleteMixin,
@@ -57,3 +57,10 @@ class CustomDeleteView(
     success_url = reverse_lazy('statuses_index')
     success_message = _('Status was deleted successfully')
     protection_error_message = _('Cannot delete status because it is in use')
+
+    def check(self, request, *args, **kwargs):
+        status_id = kwargs.get('pk')
+        statuses_tasks = Status.objects.get(id=status_id).statuses.all()
+        if statuses_tasks:
+            return False
+        return True

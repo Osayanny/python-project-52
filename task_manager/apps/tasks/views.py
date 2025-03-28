@@ -22,7 +22,7 @@ class IndexView(AuthenticationRequiredMixin, FilterView):
     template_name = 'tasks/index.html'
 
 
-class CustomCreateView(
+class TaskCreateView(
     AuthenticationRequiredMixin,
     SuccessMessageMixin,
     CreateView
@@ -39,7 +39,7 @@ class CustomCreateView(
         return super().form_valid(form) 
 
 
-class CustomUpdateView(
+class TaskUpdateView(
     AuthenticationRequiredMixin,
     SuccessMessageMixin,
     UpdateView
@@ -52,7 +52,7 @@ class CustomUpdateView(
     success_message = _('Task was updated successfully')
 
 
-class CustomDeleteView(
+class TaskDeleteView(
     AuthenticationRequiredMixin,
     AuthorizationRequiredMixin,
     SuccessMessageMixin,
@@ -71,7 +71,7 @@ class CustomDeleteView(
         return task_author == self.request.user
 
 
-class CustomDetailView(
+class TaskDetailView(
     AuthenticationRequiredMixin,
     SuccessMessageMixin,
     DetailView

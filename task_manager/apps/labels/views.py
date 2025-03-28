@@ -18,7 +18,7 @@ class IndexView(AuthenticationRequiredMixin, ListView):
     template_name = 'labels/index.html'
 
 
-class CustomCreateView(
+class LabelCreateView(
     AuthenticationRequiredMixin,
     SuccessMessageMixin,
     CreateView
@@ -31,7 +31,7 @@ class CustomCreateView(
     success_message = _('Label was created successfully')
 
 
-class CustomUpdateView(
+class LabelUpdateView(
     AuthenticationRequiredMixin,
     SuccessMessageMixin,
     UpdateView
@@ -44,7 +44,7 @@ class CustomUpdateView(
     success_message = _('Label was updated successfully')
 
 
-class CustomDeleteView(
+class LabelDeleteView(
     AuthenticationRequiredMixin,
     SuccessMessageMixin,
     ProtectionToDeleteMixin,
@@ -56,3 +56,10 @@ class CustomDeleteView(
     success_url = reverse_lazy('labels_index')
     success_message = _('Label was deleted successfully')
     protection_error_message = _('Cannot delete label because it is in use')
+
+    def check(self, request, *args, **kwargs):
+        label_id = kwargs.get('pk')
+        labels_tasks = Label.objects.get(id=label_id).labels.all()
+        if labels_tasks:
+            return False
+        return True
