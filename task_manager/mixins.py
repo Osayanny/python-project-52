@@ -9,8 +9,6 @@ from django.utils.translation import gettext as _
 
 
 class NoPermissionHandleMixin:
-    permission_denied_message = None
-    permission_denied_url = None
 
     def handle_no_permission(self):
         messages.error(self.request, self.get_permission_denied_message())
@@ -22,26 +20,35 @@ class AuthenticationRequiredMixin(LoginRequiredMixin):
     redirect_field_name = None
 
     def dispatch(self, request, *args, **kwargs):
+        
         self.permission_denied_message = _(
-            'You are not logged in! Please sign in.'
+            'You are not authorized! Please log in.'
             )
         self.permission_denied_url = reverse_lazy('login')
         return super().dispatch(request, *args, **kwargs)
 
 
-class AuthorizationRequiredMixin(UserPassesTestMixin):
+class UserAuthorizationRequiredMixin(UserPassesTestMixin):
 
     redirect_field_name = None
-
-    def test_func(self):
-        user = self.get_object()
-        return user == self.request.user
 
     def dispatch(self, request, *args, **kwargs):
         self.permission_denied_message = _(
             'You do not have permission to update another user.'
-            )
+        )
         self.permission_denied_url = reverse_lazy('users_index')
+        return super().dispatch(request, *args, **kwargs)
+
+
+class TaskAuthorizationRequiredMixin(UserPassesTestMixin):
+
+    redirect_field_name = None
+
+    def dispatch(self, request, *args, **kwargs):
+        self.permission_denied_message = _(
+            'A task can only be deleted by its author.'
+            )
+        self.permission_denied_url = reverse_lazy('tasks_index')
         return super().dispatch(request, *args, **kwargs)
 
 

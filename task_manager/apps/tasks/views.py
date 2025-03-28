@@ -7,7 +7,8 @@ from django_filters.views import FilterView
 
 from task_manager.mixins import (
     AuthenticationRequiredMixin,
-    AuthorizationRequiredMixin,
+    NoPermissionHandleMixin,
+    TaskAuthorizationRequiredMixin,
 )
 
 from .filters import TaskFilter
@@ -53,8 +54,9 @@ class TaskUpdateView(
 
 
 class TaskDeleteView(
+    NoPermissionHandleMixin,
     AuthenticationRequiredMixin,
-    AuthorizationRequiredMixin,
+    TaskAuthorizationRequiredMixin,
     SuccessMessageMixin,
     DeleteView
     ):
@@ -66,9 +68,8 @@ class TaskDeleteView(
     permission_denied_message = _('A task can only be deleted by its author.')
 
     def test_func(self):
-        task_id = self.kwargs.get('pk')
-        task_author = Task.objects.get(pk=task_id).author
-        return task_author == self.request.user
+        task = self.get_object()
+        return task.author == self.request.user
 
 
 class TaskDetailView(
